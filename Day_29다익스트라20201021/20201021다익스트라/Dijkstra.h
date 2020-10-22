@@ -104,8 +104,10 @@ public:
 private:
 	vector<vector<int>> ad; //간선의 정보를 가지고 있는 배열
 	vector<bool> selected; //방문했던 노드인지 아닌지
-	vector<int> dist; //옆에 적어두었던 배열
+	//옆에 적어두었던 배열
 	int nodeCount = 0;
+public:
+	vector<int> dist;
 };
 
 #include <queue>
