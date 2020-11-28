@@ -3,5 +3,7 @@
   <ItemGroup>
     <ClCompile Include="main4.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\Day_03iteratorRvalue함수포인터0820\main2.cpp" />
+    <ClCompile Include="..\Day_03iteratorRvalue함수포인터0820\main3.cpp" />
   </ItemGroup>
 </Project>

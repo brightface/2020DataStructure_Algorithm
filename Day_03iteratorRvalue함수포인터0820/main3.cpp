@@ -7,6 +7,10 @@ void Function()
 {
 	cout << "Function" << endl;
 }
+void Function3()
+{
+	cout << "Function3" << endl;
+}
 
 void Function2(int value)
 {
@@ -25,7 +29,7 @@ void Function2(int value)
 
 int main()
 {
-	Function();
+	//Function();
 	// 증분 링크
 	// 함수 테이블
 
@@ -37,7 +41,7 @@ int main()
 	// 함수 포인터 : 함수의 주소를 저장
 	// C 언어 함수포인터
 	void(*fp1)() = Function;		// 자료형(* 함수포인터 이름 ) ( 매개변수 리스트 ) = 함수의 이름;
-	// void(*fp2)(int) = Function;
+	 void(*fp2)(int) = Function2;
 	// void(*fp3)(int, int) = Function;
 	// C 언어에서 함수포인터의 대상은 함수들이었다.
 
@@ -50,14 +54,22 @@ int main()
 	function<void()> fp4 = Function;
 	function<void(int)> fp5 = Function2;
 
+	void(*fp3)() = Function3;
+	//fp5(); 1) // 안돼
+	//fp1(); // 돼
+	//fp2(1); //돼
 	// Vector
 	vector<void(*)()> vec;
+	//vec.push_back(fp4); //1) //fuction<>은 데이터 타입이 c언어 타입과 다르며 c언어 타입은 함수포인터를 함수처럼 쓸수 있다. 
 	vec.push_back(fp1);		// 함수
 	vec.push_back([]() {cout << "Lambda" << endl; });	// 람다
+	//////////////////////
+	
+	vec.push_back(fp3);
 
-	for (void(*fp1)() : vec)
-		fp1();
-
+	for (void(*fp3)() : vec)
+		fp3(); //fp3이 자료형이라서 이렇게 출력된다. <자료형이 아니면 즉 fp1이면 fp1만 3번(3번넣었으니) 출력된다>
+	//먼저 벡터에 들어있는 fp1으로 Function 출력하였고 람다식으로 넣은 (함수포인터를 안쓴 람다식 = 함수의 이름이 필요없다) Lamda출력함.
 
 	return 0;
 }
