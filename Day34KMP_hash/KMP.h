@@ -21,14 +21,15 @@ void FindString(string parent, string pattern)
 		{
 			if (parent[i + j] != pattern[j])
 			{
+				//같지 않다면 false로 만든다. 그리고 반복문 나가.
 				bMatched = false;
 				break;
 			}
-		}
+		}//true면 찾았다.
 		if (bMatched == true)
 			cout << i << "번째에서 찾음" << endl;
 	}
-}
+}//그냥 찾는 알고리즘.(kmp아님)
 
 /*
 KMP 알고리즘.
@@ -93,9 +94,10 @@ vector<int> MakeTable(string pattern)
 	int j = 0;
 	for (int i = 1; i < pattern.size(); i++)
 	{
-		while (j > 0 && pattern[i] != pattern[j])
+		//j가 처음은 0이라 그냥 넘어감.
+		while (j > 0 && pattern[i] != pattern[j]) //같지 않으면 다시 j-1이 0이 되어 table[0] = 1 이 된다. 만약 같으면 table[1]=2 가되고
 			j = table[j - 1];
-
+		//처음은 j가 0, i가 1이다. 같으면 j가 1된다.
 		if (pattern[i] == pattern[j])
 			table[i] = ++j;
 	}
